@@ -1,9 +1,11 @@
 package com.example.android.guesstheword.screens.game
 
 import android.os.CountDownTimer
+import android.text.format.DateUtils
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
@@ -36,6 +38,10 @@ class GameViewModel : ViewModel() {
         get() = _currentTime
 
     private val timer: CountDownTimer
+
+    val currentTimeString = Transformations.map(currentTime) { time ->
+        DateUtils.formatElapsedTime(time)
+    }
 
 
     /**
